@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import {
+  Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -9,6 +10,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+
+const googleIcon = require("../../assets/images/Google_SSO_Icon.png");
+const appleIcon = require("../../assets/images/Apple_SSO_Icon.png");
 
 const LoginScreen: React.FC = () => {
   const [step, setStep] = useState<"email" | "password">("email");
@@ -94,11 +98,28 @@ const LoginScreen: React.FC = () => {
                 <View style={styles.divider} />
               </View>
 
-              <TouchableOpacity style={styles.oauthBtn} onPress={() => {}}>
-                <Text style={styles.oauthText}>🟦 Sign in with Google</Text>
+              <TouchableOpacity
+                style={styles.oauthBtn}
+                onPress={() => {}}
+                accessibilityRole="button"
+                accessibilityLabel="Continue with Google"
+              >
+                <View style={styles.oauthBtnContent}>
+                  <Image source={googleIcon} style={styles.oauthIcon} />
+                  <Text style={styles.oauthText}>Continue with Google</Text>
+                </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.oauthBtn} onPress={() => {}}>
-                <Text style={styles.oauthText}>⬛️ Sign in with Apple</Text>
+
+              <TouchableOpacity
+                style={styles.oauthBtn}
+                onPress={() => {}}
+                accessibilityRole="button"
+                accessibilityLabel="Continue with Apple"
+              >
+                <View style={styles.oauthBtnContent}>
+                  <Image source={appleIcon} style={styles.oauthIcon} />
+                  <Text style={styles.oauthText}>Continue with Apple</Text>
+                </View>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => {}}>
@@ -150,12 +171,12 @@ const LoginScreen: React.FC = () => {
 const styles = StyleSheet.create({
   scroll: {
     flexGrow: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FAFAFC",
     padding: 16,
   },
   card: {
     flexGrow: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FAFAFC",
     borderRadius: 20,
     paddingHorizontal: 20,
     paddingTop: 16,
@@ -205,15 +226,21 @@ const styles = StyleSheet.create({
     fontFamily: "NunitoSans_800ExtraBold",
     color: "#000000",
     paddingBottom: 32,
+    marginBottom: 60,
   },
   input: {
     borderWidth: 1,
-    borderColor: "#D8E1DF",
+    borderColor: "#DDDDDD",
     paddingHorizontal: 16,
+    paddingVertical: 12,
     height: 48,
-    borderRadius: 12,
-    backgroundColor: "#fff",
+    borderRadius: 16,
+    backgroundColor: "#FFFFFF",
     marginTop: 8,
+    fontSize: 18,
+    fontFamily: "SourceSans3_400Regular",
+    color: "#727272",
+    marginBottom: 12,
   },
   dividerRow: {
     flexDirection: "row",
@@ -223,21 +250,38 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: "#D8E1DF",
+    backgroundColor: "#DDDDDD",
     flex: 1,
+    marginBottom: 12,
   },
   dividerText: {
-    color: "#727272",
+    color: "#DDDDDD",
     fontSize: 12,
+    fontFamily: "SourceSans3_600SemiBold",
+    marginBottom: 12,
   },
   oauthBtn: {
     borderWidth: 1,
     borderColor: "#285852",
-    borderRadius: 16,
-    height: 44,
+    borderRadius: 50,
+    height: 40,
+    justifyContent: "center",
+    paddingLeft: 12,
+    paddingRight: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginBottom: 24,
+  },
+  oauthBtnContent: {
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 12,
+    gap: 3,
+  },
+  oauthIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: "contain",
   },
   oauthText: {
     color: "#285852",
@@ -246,16 +290,18 @@ const styles = StyleSheet.create({
   link: {
     color: "#285852",
     textAlign: "center",
-    marginTop: 12,
+    marginTop: 60,
     fontFamily: "NunitoSans_600SemiBold",
+    fontSize: 12,
   },
   emailPillWrap: {
     alignSelf: "center",
-    backgroundColor: "#e7f1ef",
+    borderWidth: 1,
+    borderColor: "#285852",
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 999,
-    marginBottom: 10,
+    borderRadius: 50,
+    marginBottom: 16,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -269,12 +315,14 @@ const styles = StyleSheet.create({
   },
   nextBtn: {
     backgroundColor: "#285852",
-    height: 48,
-    borderRadius: 24,
+    height: 42,
+    borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 24,
+    marginTop: 12,
     opacity: 1,
+    fontFamily: "NunitoSans_600SemiBold",
+    fontSize: 12,
   },
   nextBtnDisabled: {
     backgroundColor: "#c8cfcd",

@@ -196,15 +196,15 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   welcomeSmall: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#243b37",
+    fontSize: 24,
+    fontFamily: "NunitoSans_700Bold",
+    color: "#000000",
   },
   brand: {
-    fontSize: 40,
-    fontWeight: "800",
-    color: "#243b37",
-    marginTop: 4,
+    fontSize: 48,
+    fontFamily: "NunitoSans_800ExtraBold",
+    color: "#000000",
+    paddingBottom: 32,
   },
   input: {
     borderWidth: 1,

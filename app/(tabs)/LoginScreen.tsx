@@ -36,7 +36,6 @@ const LoginScreen: React.FC = () => {
     setEmailError(false);
     setPasswordError(false);
 
-    // Always validate first, even when Next is grayed out
     if (step === "email") {
       if (!/.+@.+\..+/.test(email.trim())) {
         setEmailError(true);

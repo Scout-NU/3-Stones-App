@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   headerIconText: {
     fontSize: 18,
-    color: "#1f3a37",
+    color: "#282828",
   },
   back: {
     fontSize: 18,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "#d8e1df",
+    borderColor: "#D8E1DF",
     paddingHorizontal: 16,
     height: 48,
     borderRadius: 12,
@@ -223,16 +223,16 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: "#e6ecea",
+    backgroundColor: "#D8E1DF",
     flex: 1,
   },
   dividerText: {
-    color: "#a0adab",
+    color: "#727272",
     fontSize: 12,
   },
   oauthBtn: {
     borderWidth: 1,
-    borderColor: "#1f3a37",
+    borderColor: "#285852",
     borderRadius: 16,
     height: 44,
     alignItems: "center",
@@ -240,14 +240,14 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   oauthText: {
-    color: "#1f3a37",
+    color: "#285852",
     fontWeight: "600",
   },
   link: {
-    color: "#1f3a37",
+    color: "#285852",
     textAlign: "center",
     marginTop: 12,
-    textDecorationLine: "underline",
+    fontFamily: "NunitoSans_600SemiBold",
   },
   emailPillWrap: {
     alignSelf: "center",
@@ -260,15 +260,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   emailPillText: {
-    color: "#1f3a37",
+    color: "#285852",
     fontWeight: "600",
   },
   emailPillEdit: {
-    color: "#1f3a37",
+    color: "#285852",
     marginLeft: 4,
   },
   nextBtn: {
-    backgroundColor: "#1f3a37",
+    backgroundColor: "#285852",
     height: 48,
     borderRadius: 24,
     alignItems: "center",
@@ -283,6 +283,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "700",
     fontSize: 16,
+    fontFamily: "NunitoSans_700Bold",
   },
 });
 

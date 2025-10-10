@@ -12,6 +12,11 @@ import {
   NunitoSans_800ExtraBold,
   useFonts,
 } from "@expo-google-fonts/nunito-sans";
+import {
+  SourceSans3_400Regular,
+  SourceSans3_600SemiBold,
+} from "@expo-google-fonts/source-sans-3";
+import { ActivityIndicator } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -20,7 +25,11 @@ export default function TabLayout() {
     NunitoSans_600SemiBold,
     NunitoSans_700Bold,
     NunitoSans_800ExtraBold,
+    SourceSans3_400Regular,
+    SourceSans3_600SemiBold,
   });
+
+  if (!fontsLoaded) return <ActivityIndicator />;
 
   return (
     <Tabs

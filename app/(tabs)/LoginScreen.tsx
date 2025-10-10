@@ -45,14 +45,27 @@ const LoginScreen: React.FC = () => {
         <View style={styles.card}>
           <View style={styles.headerRow}>
             {step === "password" ? (
-              <TouchableOpacity onPress={goBack} accessibilityRole="button">
-                <Text style={styles.back}>◀︎</Text>
+              <TouchableOpacity
+                onPress={goBack}
+                accessibilityRole="button"
+                accessibilityLabel="Go back"
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                style={styles.headerIconArea}
+              >
+                <Text style={styles.headerIconText}>◀︎</Text>
               </TouchableOpacity>
             ) : (
-              <View style={{ width: 24 }} />
+              <TouchableOpacity
+                onPress={() => {}}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                style={styles.headerIconArea}
+              >
+                <Text style={styles.headerIconText}>×</Text>
+              </TouchableOpacity>
             )}
-            <Text style={styles.pageTitle}>Login</Text>
-            <View style={{ width: 24 }} />
+            <View style={styles.headerIconArea} />
           </View>
 
           {/* Brand welcome */}
@@ -153,6 +166,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    paddingHorizontal: 24,
+    paddingVertical: 24,
+  },
+  headerIconArea: {
+    width: 44,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  headerIconText: {
+    fontSize: 18,
+    color: "#1f3a37",
   },
   back: {
     fontSize: 18,
@@ -162,7 +187,7 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     fontSize: 14,
-    color: "#8a9a96",
+    color: "#FFFFFF",
     textAlign: "center",
   },
   welcomeBlock: {

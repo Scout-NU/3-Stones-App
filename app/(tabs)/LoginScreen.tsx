@@ -3,6 +3,7 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -16,11 +17,14 @@ const appleIcon = require("../../assets/images/Apple_SSO_Icon.png");
 const closeIcon = require("../../assets/images/close.png");
 const editIcon = require("../../assets/images/edit.png");
 const backIcon = require("../../assets/images/Back_Button.png");
+const errorIcon = require("../../assets/images/error_outline.png");
 
 const LoginScreen: React.FC = () => {
   const [step, setStep] = useState<"email" | "password">("email");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const canContinue = useMemo(() => {
     if (step === "email") return /.+@.+\..+/.test(email.trim());
@@ -28,16 +32,31 @@ const LoginScreen: React.FC = () => {
   }, [step, email, password]);
 
   const onNext = () => {
-    if (step === "email" && canContinue) {
+    // reset errors on attempt
+    setEmailError(false);
+    setPasswordError(false);
+
+    // Always validate first, even when Next is grayed out
+    if (step === "email") {
+      if (!/.+@.+\..+/.test(email.trim())) {
+        setEmailError(true);
+        return;
+      }
       setStep("password");
-    } else if (step === "password" && canContinue) {
-      // Submit credentials here
-      console.log("Login with:", { email, password });
+      return;
+    }
+
+    if (step === "password") {
+      if (password.trim().length < 6) {
+        setPasswordError(true);
+        return;
+      }
     }
   };
 
   const goBack = () => {
     if (step === "password") setStep("email");
+    setPasswordError(false);
   };
 
   return (
@@ -47,7 +66,8 @@ const LoginScreen: React.FC = () => {
     >
       <ScrollView
         contentContainerStyle={styles.scroll}
-        keyboardShouldPersistTaps="handled"
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode="interactive"
       >
         <View style={styles.card}>
           <View style={styles.headerRow}>
@@ -90,11 +110,28 @@ const LoginScreen: React.FC = () => {
                 keyboardType="email-address"
                 textContentType="emailAddress"
                 value={email}
-                onChangeText={setEmail}
-                style={styles.input}
+                onChangeText={(t) => {
+                  setEmail(t);
+                  if (emailError && /.+@.+\..+/.test(t.trim()))
+                    setEmailError(false);
+                }}
+                style={[styles.input, emailError && styles.inputError]}
                 returnKeyType="next"
                 onSubmitEditing={onNext}
+                onBlur={() => {
+                  if (!/.+@.+\..+/.test(email.trim())) {
+                    setEmailError(true);
+                  }
+                }}
               />
+              {emailError && (
+                <View style={styles.errorRow}>
+                  <Image source={errorIcon} style={styles.errorIcon} />
+                  <Text style={styles.errorText}>
+                    Invalid username or password
+                  </Text>
+                </View>
+              )}
 
               <View style={styles.dividerRow}>
                 <View style={styles.divider} />
@@ -143,11 +180,28 @@ const LoginScreen: React.FC = () => {
                 secureTextEntry
                 textContentType="password"
                 value={password}
-                onChangeText={setPassword}
-                style={styles.input}
+                onChangeText={(t) => {
+                  setPassword(t);
+                  if (passwordError && t.trim().length >= 6)
+                    setPasswordError(false);
+                }}
+                style={[styles.input, passwordError && styles.inputError]}
                 returnKeyType="go"
                 onSubmitEditing={onNext}
+                onBlur={() => {
+                  if (password.trim().length < 6) {
+                    setPasswordError(true);
+                  }
+                }}
               />
+              {passwordError && (
+                <View style={styles.errorRow}>
+                  <Image source={errorIcon} style={styles.errorIcon} />
+                  <Text style={styles.errorText}>
+                    Invalid username or password
+                  </Text>
+                </View>
+              )}
 
               <TouchableOpacity onPress={() => {}}>
                 <Text
@@ -159,14 +213,24 @@ const LoginScreen: React.FC = () => {
             </View>
           )}
 
-          <TouchableOpacity
+          <Pressable
             style={[styles.nextBtn, !canContinue && styles.nextBtnDisabled]}
-            onPress={onNext}
-            disabled={!canContinue}
+            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+            onPress={() => {
+              if (!canContinue) {
+                if (step === "email") {
+                  setEmailError(true);
+                } else {
+                  setPasswordError(true);
+                }
+                return;
+              }
+              onNext();
+            }}
             accessibilityRole="button"
           >
             <Text style={styles.nextText}>Next</Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -351,6 +415,46 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     resizeMode: "contain",
+  },
+  inputError: {
+    borderColor: "#D32246",
+  },
+  errorRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    marginTop: 6,
+    marginBottom: 8,
+    paddingLeft: 2,
+  },
+  errorIcon: {
+    width: 16,
+    height: 16,
+    resizeMode: "contain",
+    tintColor: "#D32246",
+  },
+  errorBadge: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#D32246",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  errorBadgeMark: {
+    color: "#D32246",
+    fontSize: 12,
+    lineHeight: 12,
+    textAlign: "center",
+    includeFontPadding: false,
+    fontFamily: "SourceSans3_600SemiBold",
+  },
+  errorText: {
+    color: "#D32246",
+    fontSize: 16,
+    fontFamily: "SourceSans3_400Regular",
   },
 });
 

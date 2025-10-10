@@ -13,6 +13,9 @@ import {
 
 const googleIcon = require("../../assets/images/Google_SSO_Icon.png");
 const appleIcon = require("../../assets/images/Apple_SSO_Icon.png");
+const closeIcon = require("../../assets/images/close.png");
+const editIcon = require("../../assets/images/edit.png");
+const backIcon = require("../../assets/images/Back_Button.png");
 
 const LoginScreen: React.FC = () => {
   const [step, setStep] = useState<"email" | "password">("email");
@@ -56,7 +59,7 @@ const LoginScreen: React.FC = () => {
                 hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 style={styles.headerIconArea}
               >
-                <Text style={styles.headerIconText}>◀︎</Text>
+                <Image source={backIcon} style={styles.headerIcon} />
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
@@ -66,7 +69,7 @@ const LoginScreen: React.FC = () => {
                 hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 style={styles.headerIconArea}
               >
-                <Text style={styles.headerIconText}>×</Text>
+                <Image source={closeIcon} style={styles.headerIcon} />
               </TouchableOpacity>
             )}
             <View style={styles.headerIconArea} />
@@ -82,6 +85,7 @@ const LoginScreen: React.FC = () => {
             <View>
               <TextInput
                 placeholder="Email"
+                placeholderTextColor="#DDDDDD"
                 autoCapitalize="none"
                 keyboardType="email-address"
                 textContentType="emailAddress"
@@ -130,11 +134,12 @@ const LoginScreen: React.FC = () => {
             <View>
               <View style={styles.emailPillWrap}>
                 <Text style={styles.emailPillText}>{email}</Text>
-                <Text style={styles.emailPillEdit}> ✎</Text>
+                <Image source={editIcon} style={styles.emailPillEditIcon} />
               </View>
 
               <TextInput
                 placeholder="Password"
+                placeholderTextColor="#DDDDDD"
                 secureTextEntry
                 textContentType="password"
                 value={password}
@@ -187,13 +192,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 24,
+    paddingLeft: 12,
+    paddingRight: 24,
     paddingVertical: 24,
+    marginBottom: 12,
   },
   headerIconArea: {
     width: 44,
     height: 44,
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
   },
   headerIconText: {
@@ -313,6 +320,13 @@ const styles = StyleSheet.create({
     color: "#285852",
     marginLeft: 4,
   },
+  emailPillEditIcon: {
+    width: 16,
+    height: 16,
+    marginLeft: 4,
+    resizeMode: "contain",
+    tintColor: "#285852",
+  },
   nextBtn: {
     backgroundColor: "#285852",
     height: 42,
@@ -332,6 +346,11 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 16,
     fontFamily: "NunitoSans_700Bold",
+  },
+  headerIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: "contain",
   },
 });
 

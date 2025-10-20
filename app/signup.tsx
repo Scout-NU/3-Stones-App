@@ -32,7 +32,7 @@ export default function SignUpScreen() {
       <View style={styles.buttonContainer}>
         <TouchableOpacity 
           style={styles.primaryButton}
-          onPress={() => router.replace('/(tabs)')}
+          onPress={() => router.push('/input-email')}
         >
           <Text style={styles.primaryButtonText}>Continue with email</Text>
         </TouchableOpacity>
@@ -49,9 +49,6 @@ export default function SignUpScreen() {
           <Text style={styles.socialButtonText}>Sign up with Apple</Text>
         </TouchableOpacity>
       </View>
-
-      {/* Bottom Indicator (iPhone Home Indicator) */}
-      <View style={styles.bottomIndicator} />
     </View>
   );
 };
@@ -81,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 40,
-    marginTop: -50, // Adjust to center better
+    marginTop: -40, // Adjust to center better
   },
   welcomeText: {
     fontSize: 16,
@@ -92,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 42,
     fontWeight: 'bold',
     color: '#000',
-    marginBottom: 24,
+    marginBottom: 23,
   },
   descriptionText: {
     fontSize: 15,
@@ -149,13 +146,5 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
     fontWeight: '500',
-  },
-  bottomIndicator: {
-    width: 134,
-    height: 5,
-    backgroundColor: '#000',
-    borderRadius: 100,
-    alignSelf: 'center',
-    marginBottom: 8,
   },
 });

@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 10,
     width: 40,
-    height: 40,
+    height: 90,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 40,
-    marginTop: -40, // Adjust to center better
+    marginTop: -80, // Adjust to center better
   },
   welcomeText: {
     fontSize: 16,

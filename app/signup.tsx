@@ -81,22 +81,23 @@ const styles = StyleSheet.create({
     marginTop: -80, // Adjust to center better
   },
   welcomeText: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#000000',
     marginBottom: 8,
   },
   brandText: {
-    fontSize: 42,
+    fontSize: 48,
     fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 23,
+    color: '#000000',
+    marginBottom: 16,
   },
   descriptionText: {
-    fontSize: 15,
-    color: '#666',
+    fontSize: 16,
+    color: '#000000',
     textAlign: 'center',
-    lineHeight: 22,
     paddingHorizontal: 20,
+    marginBottom: 40,
   },
   buttonContainer: {
     paddingHorizontal: 24,

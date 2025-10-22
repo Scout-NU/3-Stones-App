@@ -45,13 +45,13 @@ export default function InputPasswordScreen() {
 
         {/* Password Input */}
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Password</Text>
+          {/* <Text style={styles.label}>Password</Text> */}
           <View style={styles.passwordInputWrapper}>
             <TextInput
               style={styles.input}
               value={password}
               onChangeText={setPassword}
-              placeholder=""
+              placeholder="Password"
               secureTextEntry={!isPasswordVisible}
               autoCapitalize="none"
               autoCorrect={false}
@@ -129,8 +129,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
+    textAlign: 'center',
     color: '#000',
-    marginBottom: 32,
+    marginBottom: 76,
   },
   inputContainer: {
     marginBottom: 20,
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
   eyeIcon: {
     position: 'absolute',
     right: 16,
-    top: 16,
+    top: 12,
     padding: 4,
   },
   eyeIconText: {

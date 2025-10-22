@@ -45,12 +45,12 @@ export default function InputEmailScreen() {
 
         {/* Email Input */}
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Email</Text>
+          {/* <Text style={styles.label}>Email</Text> */}
           <TextInput
             style={styles.input}
             value={email}
             onChangeText={setEmail}
-            placeholder=""
+            placeholder="Email"
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
@@ -122,12 +122,14 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     color: '#000',
+    textAlign: 'center',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 15,
     color: '#666',
-    marginBottom: 32,
+    textAlign: 'center',
+    marginBottom: 52,
   },
   inputContainer: {
     marginBottom: 20,

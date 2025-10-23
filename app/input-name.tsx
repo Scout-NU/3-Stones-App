@@ -11,10 +11,12 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 
-export default function InputPasswordScreen() {
+export default function InputNameScreen() {
   const router = useRouter();
-  const [password, setPassword] = useState('');
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const canContinue = firstName.trim() && lastName.trim();
 
   return (
     <KeyboardAvoidingView 
@@ -34,45 +36,50 @@ export default function InputPasswordScreen() {
 
         <View style={styles.progressContainer}>
           <View style={styles.progressBarBackground}>
-            <View style={[styles.progressBarFill, { width: '40%' }]} />
+            <View style={[styles.progressBarFill, { width: '60%' }]} />
           </View>
         </View>
       </View>
       
       {/* Main Content */}
       <View style={styles.content}>
-        <Text style={styles.title}>Create a password</Text>
+        <Text style={styles.title}>A bit about you</Text>
+        <Text style={styles.subtitle}>
+          We need your first and last name to get started.
+        </Text>
 
-        {/* Password Input */}
+        {/* First Name Input */}
         <View style={styles.inputContainer}>
-          {/* <Text style={styles.label}>Password</Text> */}
-          <View style={styles.passwordInputWrapper}>
-            <TextInput
-              style={styles.input}
-              value={password}
-              onChangeText={setPassword}
-              placeholder="Password"
-              secureTextEntry={!isPasswordVisible}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoFocus={true}
-            />
-            <TouchableOpacity 
-              style={styles.eyeIcon}
-              onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-            >
-              <Text style={styles.eyeIconText}>{isPasswordVisible ? '👁️' : '👁️‍🗨️'}</Text>
-            </TouchableOpacity>
-          </View>
+          <TextInput
+            style={styles.input}
+            value={firstName}
+            onChangeText={setFirstName}
+            placeholder="First name"
+            autoCapitalize="words"
+            autoCorrect={false}
+            autoFocus={true}
+          />
+        </View>
+
+        {/* Last Name Input */}
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            value={lastName}
+            onChangeText={setLastName}
+            placeholder="Last name"
+            autoCapitalize="words"
+            autoCorrect={false}
+          />
         </View>
       </View>
 
       {/* Continue Button */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity 
-          style={[styles.continueButton, !password && styles.continueButtonDisabled]}
-          onPress={() => password && router.push('/input-name')}
-          disabled={!password}
+          style={[styles.continueButton, !canContinue && styles.continueButtonDisabled]}
+          onPress={() => canContinue && router.push('/(tabs)')}
+          disabled={!canContinue}
         >
           <Text style={styles.continueButtonText}>Continue</Text>
         </TouchableOpacity>
@@ -129,39 +136,28 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    textAlign: 'center',
     color: '#000',
-    marginBottom: 76,
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  subtitle: {
+    fontSize: 15,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 52,
+    lineHeight: 20,
   },
   inputContainer: {
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 8,
-  },
-  passwordInputWrapper: {
-    position: 'relative',
+    marginBottom: 16,
   },
   input: {
     backgroundColor: '#FFF',
     borderRadius: 12,
     paddingVertical: 16,
     paddingHorizontal: 16,
-    paddingRight: 50,
     fontSize: 16,
     borderWidth: 1,
     borderColor: '#E0E0E0',
-  },
-  eyeIcon: {
-    position: 'absolute',
-    right: 16,
-    top: 12,
-    padding: 4,
-  },
-  eyeIconText: {
-    fontSize: 20,
   },
   buttonContainer: {
     paddingHorizontal: 24,

@@ -55,6 +55,7 @@ export default function InputNameScreen() {
             value={firstName}
             onChangeText={setFirstName}
             placeholder="First name"
+            placeholderTextColor="#999"
             autoCapitalize="words"
             autoCorrect={false}
             autoFocus={true}
@@ -68,6 +69,7 @@ export default function InputNameScreen() {
             value={lastName}
             onChangeText={setLastName}
             placeholder="Last name"
+            placeholderTextColor="#999"
             autoCapitalize="words"
             autoCorrect={false}
           />
@@ -78,7 +80,7 @@ export default function InputNameScreen() {
       <View style={styles.buttonContainer}>
         <TouchableOpacity 
           style={[styles.continueButton, !canContinue && styles.continueButtonDisabled]}
-          onPress={() => canContinue && router.push('/(tabs)')}
+          onPress={() => canContinue && router.push('/input-legal')}
           disabled={!canContinue}
         >
           <Text style={styles.continueButtonText}>Continue</Text>

@@ -52,6 +52,7 @@ export default function InputPasswordScreen() {
               value={password}
               onChangeText={setPassword}
               placeholder="Password"
+              placeholderTextColor="#999"
               secureTextEntry={!isPasswordVisible}
               autoCapitalize="none"
               autoCorrect={false}

@@ -51,6 +51,7 @@ export default function InputEmailScreen() {
             value={email}
             onChangeText={setEmail}
             placeholder="Email"
+            placeholderTextColor="#999"
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}

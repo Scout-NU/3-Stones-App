@@ -58,7 +58,6 @@ export default function InputNameScreen() {
             placeholderTextColor="#999"
             autoCapitalize="words"
             autoCorrect={false}
-            autoFocus={true}
           />
         </View>
 

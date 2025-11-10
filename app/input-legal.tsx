@@ -185,7 +185,7 @@ export default function InputLegalScreen() {
       <View style={styles.buttonContainer}>
         <TouchableOpacity 
           style={[styles.continueButton, !canContinue && styles.continueButtonDisabled]}
-          onPress={() => canContinue && router.push('/(tabs)')}
+          onPress={() => canContinue && router.push('/input-quiz')}
           disabled={!canContinue}
         >
           <Text style={styles.continueButtonText}>Continue</Text>

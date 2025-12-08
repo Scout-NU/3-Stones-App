@@ -1,14 +1,14 @@
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  View,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  StatusBar,
-  ScrollView,
-  SafeAreaView,
+  View,
 } from 'react-native';
-import { useRouter } from 'expo-router';
 
 type QuestionOption = {
   label: string;
@@ -101,7 +101,7 @@ export default function InvestorQuestionnaireScreen() {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // Navigate to the tabs screen or next screen after quiz
-      router.push('/(tabs)');
+      router.push('/(tabs)/home');
     }
   };
 
@@ -116,7 +116,7 @@ export default function InvestorQuestionnaireScreen() {
   const handleSaveForLater = () => {
     // Save progress and navigate to tabs or home
     // You might want to save the answers to AsyncStorage here
-    router.push('/(tabs)');
+    router.push('/(tabs)/home');
   };
 
   const isAnswered = () => {
